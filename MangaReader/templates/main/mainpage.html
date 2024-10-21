@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/style_main_page.css' %}">
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }} 
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="changing-color" style="align-self: center; padding: 40px 0 10px;">Популярное</h1>
+    <div class="wrapper changing-color">
+        
+    <div class="all_manga">
+    {% for manga in popular %}
+        
+        <a class="block_manga" href="{% url 'mangapage' mangaSlug=manga.slug %}">
+            <div class="image" style="background-image: url({{manga.photo.url}});">
+                <h4 class="manga_title">
+                    {{manga.title}} 
+                </h4>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+    </div>
+    
+    <h1 class="changing-color" style="align-self: center; padding: 40px 0 10px;">Недавно обновлённые</h1>
+    <div class="wrapper changing-color">
+        
+    <div class="all_manga">
+    {% for manga in updated %}
+        
+        <a class="block_manga" href="{% url 'mangapage' mangaSlug=manga.slug %}">
+            <div class="image" style="background-image: url({{manga.photo.url}});">
+                <h4 class="manga_title">
+                    {{manga.title}} 
+                </h4>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+    </div>
+
+    <h1 class="changing-color" style="align-self: center; padding: 40px 0 10px;">Новое</h1>
+    <div class="wrapper changing-color">
+        
+    <div class="all_manga">
+    {% for manga in new %}
+        
+        <a class="block_manga" href="{% url 'mangapage' mangaSlug=manga.slug %}">
+            <div class="image" style="background-image: url({{manga.photo.url}});">
+                <h4 class="manga_title">
+                    {{manga.title}} 
+                </h4>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}
